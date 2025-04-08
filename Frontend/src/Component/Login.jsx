@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import './Login.css'
-import axios from 'axios'
 import { AdminLoginApi } from '../Api/AdminApis'
+import { useDispatch } from "react-redux";
+
 
 function Login(prop) {
     var owner=prop.owner
+    const dispatch=useDispatch()
     
     const [adminData,setAdminData]=useState({
         Email:'',
@@ -21,8 +23,8 @@ function Login(prop) {
     }
     async function HandleAdminSubmit(){
         try{
-            var response= await AdminLoginApi(adminData)
-            console.log(response);
+            var response= await AdminLoginApi(adminData,dispatch)
+            alert('login success')
             
 
         }catch(error){

@@ -1,10 +1,11 @@
 import axios from "axios";
+import { AdminLoginData } from "../Redux/AdminLoginSlice";
 
 
-export const AdminLoginApi=async(data)=>{
+export const AdminLoginApi=async(data,dispatch)=>{
     try{
         var response = await axios.post('http://localhost:8000/Admin/Admin-Login',data)
-        return response.data
+        dispatch(AdminLoginData(response.data))
         
 
     }catch(error){

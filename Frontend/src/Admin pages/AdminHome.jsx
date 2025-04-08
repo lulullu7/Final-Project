@@ -1,9 +1,16 @@
 import React from 'react'
+import AdminNavbar from '../Component/AdminNavbar'
 
 function AdminHome() {
   return (
-    <div>AdminHome</div>
+    <div>
+      
+      <AdminNavbar/>
+      <h1>Admin Home</h1>
+
+
+    </div>
   )
 }
 
-export default AdminHome
+export default AdminHome 
