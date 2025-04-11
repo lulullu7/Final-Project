@@ -20,10 +20,12 @@ mongoose.connect(process.env.MongoDBUrl).then(()=>{
 // router imports
 var adminRouter= require('./routes/AdminRouter.js')
 var productRouter=require('./routes/ProductRouter.js')
+var UserRouter=require('./routes/UserRouter.js')
 
 // router calling
 app.use('/Admin',adminRouter)
 app.use('/Product',productRouter)
+app.use('/User',UserRouter)
 
 
 // server creation

@@ -1,10 +1,11 @@
-import axios from "axios";
+
 import { AdminLoginData } from "../Redux/AdminLoginSlice";
+import { AdminRequest, basicRequest } from "../Axios/AxiosCreate";
 
 
 export const AdminLoginApi = async (data, dispatch) => {
     try {
-        var response = await axios.post('http://localhost:8000/Admin/Admin-Login', data)
+        var response = await basicRequest.post('/Admin/Admin-Login', data)
         dispatch(AdminLoginData(response.data))
 
 
@@ -13,13 +14,19 @@ export const AdminLoginApi = async (data, dispatch) => {
 
     }
 }
-
-export const AddProductAdmin = async (data) => {
+// adding product api   
+export const AddProductAdmin = async (data,AdminToken) => {
     try {
-        var response = await axios.post('http://localhost:8000/Product/AddProduct', data, {
-            headers: { 'Content-Type': 'multipart/form-data' }
+        var response = await AdminRequest.post('/Product/AddProduct', data, {
+            headers: { 
+                'Content-Type': 'multipart/form-data',
+               
+             }
 
         })
+        console.log(response.data);
+        alert(response.data.message)
+        
 
     } catch (error) {
         console.log("error from add product", error);

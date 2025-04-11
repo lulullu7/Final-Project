@@ -21,7 +21,7 @@ function AdminNavbar() {
                     <h1>LOGO</h1>
                 </div>
                 <div className='admin_navbar_right'>
-                    <button>Home</button>
+                    <Link to={'/Admin'}>Home</Link>
                     <Link to={'/AdminAddProduct'} > Add Product</Link>
                     <button onClick={AdminLogout} className='admin_logout_btn'>Logout</button>
                     

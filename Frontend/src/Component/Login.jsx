@@ -2,17 +2,19 @@ import React, { useState } from 'react'
 import './Login.css'
 import { AdminLoginApi } from '../Api/AdminApis'
 import { useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 
 
 function Login(prop) {
     var owner=prop.owner
     const dispatch=useDispatch()
+    var navigate =useNavigate()
     
     const [adminData,setAdminData]=useState({
         Email:'',
         Password:''
     })
-
+    // update admin data state
     function HandleData(e){
         const {name,value}=e.target
         setAdminData((preview)=>({
@@ -21,11 +23,11 @@ function Login(prop) {
         }))
 
     }
+    // calling api function to submit admin login
     async function HandleAdminSubmit(){
         try{
             var response= await AdminLoginApi(adminData,dispatch)
-            alert('login success')
-            
+            navigate('/Admin')            
 
         }catch(error){
             console.log(error);

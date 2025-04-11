@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './AddProduct.css'
-import AdminNavbar from '../Component/AdminNavbar'
 import { AddProductAdmin } from '../Api/AdminApis'
+import { useSelector } from 'react-redux'
 
 function AddProduct() {
   const [preview, setPreview] = useState()
@@ -12,6 +12,13 @@ function AddProduct() {
     productdis: '',
     productcompany:''
   })
+
+  var AdminLoginInfo=useSelector((state)=>state.AdminLogin.AdminLoginData[0]? state.AdminLogin.AdminLoginData[0]:null)
+  
+  var AdminToken
+  if (AdminLoginInfo){
+    AdminToken=AdminLoginInfo.Token
+  }
 
   function handleimagechanges(e) {
     const file = e.target.files[0]
@@ -34,7 +41,6 @@ function AddProduct() {
 
   }
 
-  console.log(product);
 
   async function handleProductAdd(e) {
     if (productImage || product.productname || product.productprice || product.productdis) {
@@ -47,8 +53,14 @@ function AddProduct() {
       formdata.append('productCompany',product.productcompany)
   
       try {
-
-        await AddProductAdmin(formdata)
+        await AddProductAdmin(formdata,AdminToken)
+        setProduct({
+          productcompany:'',
+          productname:'',
+          productprice:'',
+          productdis:''
+        })
+        setPreview('')
   
       } catch (error) {
         console.log(error);
@@ -59,17 +71,17 @@ function AddProduct() {
     }else{
       alert('write all the input field to add product')
     }
-
-   
-
-
   }
+
+  
+
+
 
 
   return (
 
     <div>
-      <AdminNavbar />
+      
       <section className='main_section_addproduct'>
         <div className='inner_section_addproduct'>
 
@@ -132,6 +144,7 @@ function AddProduct() {
         </div>
 
       </section>
+   
     </div>
   )
 }

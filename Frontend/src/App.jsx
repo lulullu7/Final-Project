@@ -4,27 +4,31 @@ import AdminLogin from './Admin pages/AdminLogin';
 import AdminHome from './Admin pages/AdminHome';
 import { useSelector } from "react-redux";
 import AddProduct from './Admin pages/AddProduct';
+import AdminLayout from './Layouts/AdminLayout';
+import AdminPrivate from './Component/AdminPrivate';
+import Home from './User Pages/Home';
 
 function App() {
 
-  var AdminLoginInfo=useSelector((state)=>state.AdminLogin.AdminLoginData[0]? state.AdminLogin.AdminLoginData[0]:null)
-  var AdminToken =null
-  if (AdminLoginInfo){
-    console.log(AdminLoginInfo.Token);
-    AdminToken=AdminLoginInfo.Token
-    
-  }
+ 
 
   return (
     <div>
       <Router>
         <Routes>
+          {/* Admin public Routes */}
+          <Route path='/Admin-login' element={<AdminLogin/>} />
+          <Route path='/' element={<Home/>} />
 
-        {/* admin route */}
-        
-        <Route path='/Admin' element={AdminToken ? <AdminHome/>: <AdminLogin/>} />
-        <Route path='/AdminAddProduct' element={AdminToken ? <AddProduct/>: <AdminLogin/>} />
+          {/* Admin protected routes  */}
+          <Route element={<AdminPrivate> <AdminLayout/> </AdminPrivate>} >
+          <Route path='/Admin' element={<AdminHome/>} />
+          <Route path='/Admin-Add-Product' element={<AddProduct/>} />
 
+          </Route>
+
+ 
+       
         </Routes>
       </Router>
     </div>
