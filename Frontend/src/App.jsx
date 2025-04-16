@@ -7,6 +7,8 @@ import AddProduct from './Admin pages/AddProduct';
 import AdminLayout from './Layouts/AdminLayout';
 import AdminPrivate from './Component/AdminPrivate';
 import Home from './User Pages/Home';
+import UserLogin from './User Pages/UserLogin';
+import UserSignup from './User Pages/UserSignup';
 
 function App() {
 
@@ -19,6 +21,11 @@ function App() {
           {/* Admin public Routes */}
           <Route path='/Admin-login' element={<AdminLogin/>} />
           <Route path='/' element={<Home/>} />
+
+          {/* User public Routes */}
+          <Route path='/Login' element={<UserLogin/>}/>
+          <Route path='/Signup' element={<UserSignup/>}/>
+
 
           {/* Admin protected routes  */}
           <Route element={<AdminPrivate> <AdminLayout/> </AdminPrivate>} >
