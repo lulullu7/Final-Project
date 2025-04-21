@@ -14,9 +14,9 @@ router.post('/Signup', async (req, res) => {
             return res.status(400).json({ message: "Already have an account in using same email please login" })
         } else {
 
-            req.body.Password = crypto.AES.encrypt(req.body.password, process.env.Passkey).toString()
+            var password = crypto.AES.encrypt(req.body.Password, process.env.Passkey).toString()
             const newUser = new user({
-                password: req.body.Password,
+                password:password,
                 fullname: req.body.Name,
                 email: req.body.Email,
                 phone: req.body.Phone
@@ -36,6 +36,8 @@ router.post('/Signup', async (req, res) => {
     }
 })
 
+// user login
+
 router.post('/Login', async (req, res) => {
     try {
         const FindUser = await user.findOne({ email: req.body.Email })
@@ -43,6 +45,8 @@ router.post('/Login', async (req, res) => {
             return res.status(404).json({ message: "email is incorret" })
         } else {
             const bytes = crypto.AES.decrypt(FindUser.password, process.env.Passkey)
+            console.log(bytes);
+            
             const OriginalPassword = bytes.toString(crypto.enc.Utf8)
             if (req.body.Password !== OriginalPassword) {
                 return res.status(404).json({ message: "Password is incorrect" })

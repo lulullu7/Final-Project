@@ -57,6 +57,18 @@ router.get('/View-All-Product',async (req, res) => {
     }
 })
 
+// view all product with  token verifing
+router.get('/View-All-Product-Token',VerifyTocken,async (req, res) => {
+    try{
+        var allProduct = await product.find()
+        res.status(200).json(allProduct)
+
+    }catch (error) {
+        res.status(500).json(error);
+        console.log("error from product add",error);
+    }
+})
+
 
 
 module.exports = router

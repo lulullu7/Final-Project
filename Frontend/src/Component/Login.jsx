@@ -40,7 +40,8 @@ function Login(prop) {
 
   // calling api function to submit user login
     async function HandleUserSubmit() {
-        await userLogin(adminData)
+        await userLogin(adminData, dispatch)
+        navigate('/Home')
         
     }
 
