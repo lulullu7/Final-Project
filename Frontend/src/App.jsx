@@ -12,6 +12,7 @@ import UserSignup from './User Pages/UserSignup';
 import UserPrivate from './Component/UserPrivate';
 import UserHome from './User Pages/UserHome';
 import UserLayout from './Layouts/UserLayout';
+import UserCart from './User Pages/UserCart';
 
 function App() {
 
@@ -40,6 +41,7 @@ function App() {
         {/* User protected routes  */}
         <Route element={<UserPrivate> <UserLayout/> </UserPrivate>}>
         <Route path='/Home' element={<UserHome/>}/>
+        <Route path='/Cart' element={<UserCart/>} />
 
         </Route>
 

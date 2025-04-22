@@ -45,7 +45,7 @@ router.post('/Login', async (req, res) => {
             return res.status(404).json({ message: "email is incorret" })
         } else {
             const bytes = crypto.AES.decrypt(FindUser.password, process.env.Passkey)
-            console.log(bytes);
+            // console.log(bytes);
             
             const OriginalPassword = bytes.toString(crypto.enc.Utf8)
             if (req.body.Password !== OriginalPassword) {

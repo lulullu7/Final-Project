@@ -17,7 +17,8 @@ function UserNavbar() {
                     <h1>LOGO</h1>
                 </div>
                 <div className='admin_navbar_right'>
-                    <Link >Home</Link>
+                    <Link to={'/Home'} >Home</Link>
+                    <Link to={'/Cart'}>Cart</Link>
                     <button className='admin_logout_btn' onClick={logoutuser}>Logout</button>
                     
                 </div>

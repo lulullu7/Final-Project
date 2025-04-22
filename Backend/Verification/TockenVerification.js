@@ -3,12 +3,11 @@ const JWT=require('jsonwebtoken')
 const VerifyTocken=(req,res,next)=>{
     // take the passing auther data
     var AuthHeader=req.headers.authorization
-    console.log(AuthHeader);
+    // console.log(AuthHeader);
 
     if(AuthHeader && AuthHeader.startsWith('Bearer ')){
         // token spliting with bearer
         var Token =AuthHeader.split(' ')[1]
-        console.log(Token);
         
         // Token verifying using JWT
         JWT.verify(Token,process.env.Tockenkey,(error,user)=>{
@@ -17,7 +16,7 @@ const VerifyTocken=(req,res,next)=>{
                 return res.status(401).json('Token is not valid')
             }else{
                 req.user =user
-                console.log("token verifivation success");
+                // console.log("token verifivation success");
                 next();
                 
             }

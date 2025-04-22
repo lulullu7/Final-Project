@@ -5,7 +5,7 @@ const cartSchema=new mongoose.Schema({
     productName:{type:String, required:true},
     productPrice:{type:String, required:true},
     productCompany:{type:String, required:true},
-    userId:{type:String,required:true}
+    userId:{type:mongoose.Schema.Types.ObjectId,ref:'UserData',required:true}
 })
 
 module.exports=mongoose.model('Cart-data',cartSchema)

@@ -7,7 +7,7 @@ import { AddCart } from '../Api/UserApis';
 function UserHome() {
   const [allProduct, setAllProduct] = useState([])
 
-   var UserLoginInfo=useSelector((state)=>state.UserLogin? state.UserLogin.UserLogin[0]:null)
+  var UserLoginInfo=useSelector((state)=>state.UserLogin? state.UserLogin.UserLogin[0]:null)
   console.log(UserLoginInfo.id);
   var ID=UserLoginInfo.id
   

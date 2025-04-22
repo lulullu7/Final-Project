@@ -6,7 +6,6 @@ import { UserLoginData } from "../Redux/UserLoginSlice";
 export const userSignup=async(data)=>{
     try{
         var response=await basicRequest.post('/User/Signup',data)
-        console.log(response);
         alert(response.data.message)
         
 
@@ -22,7 +21,6 @@ export const userSignup=async(data)=>{
 export const userLogin=async (data,dispatch)=>{
     try{    
         var response=await basicRequest.post('/User/Login',data)
-        console.log(response.data);
         dispatch(UserLoginData(response.data))
         
 
@@ -37,11 +35,39 @@ export const userLogin=async (data,dispatch)=>{
 export const AddCart=async(data) =>{
     try{
         var response=await UserRequest.post('/Cart/Add-Cart',data)
-        console.log(response.data);
+        alert(response.data.message)
         
     }catch(error){
         console.log("error from add  cart",error);
 
+        
+    }
+}
+// 
+export const GetCart=async(id)=>{
+    try{
+        var response=await UserRequest.get(`/Cart/Get-Cart/${id}`)
+        console.log(response.data);
+        
+        return response.data
+        
+
+    }catch(error){
+        console.log('error from get cart',error);
+        
+    }
+}
+
+// user cart remove product api 
+export const RemoveCartProduct=async(data)=>{
+    console.log(data);
+    
+    try{
+        var response=await UserRequest.delete('/Cart/remove-product',{data:data})
+        console.log(response);
+        
+    }catch(error){
+        console.log('error from remove product from cart',error);
         
     }
 }
