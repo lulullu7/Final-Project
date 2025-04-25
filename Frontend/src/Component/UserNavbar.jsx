@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 import { UserLogoutData } from '../Redux/UserLoginSlice';
 
 function UserNavbar() {
+
+    
     var dispatch=useDispatch()
     function logoutuser(){
         dispatch(UserLogoutData())
@@ -19,6 +21,7 @@ function UserNavbar() {
                 <div className='admin_navbar_right'>
                     <Link to={'/Home'} >Home</Link>
                     <Link to={'/Cart'}>Cart</Link>
+                    <Link to={'/Orders'}>order</Link>
                     <button className='admin_logout_btn' onClick={logoutuser}>Logout</button>
                     
                 </div>

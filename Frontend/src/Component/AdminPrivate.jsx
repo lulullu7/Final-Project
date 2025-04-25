@@ -7,7 +7,7 @@ function AdminPrivate({children}) {
     var AdminLoginInfo=useSelector((state)=>state.AdminLogin.AdminLoginData[0]? state.AdminLogin.AdminLoginData[0]:null)
     var AdminToken =null
     if (AdminLoginInfo){
-      console.log(AdminLoginInfo.Token);
+      // console.log(AdminLoginInfo.Token);
       AdminToken=AdminLoginInfo.Token
       
     }

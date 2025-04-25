@@ -13,6 +13,9 @@ import UserPrivate from './Component/UserPrivate';
 import UserHome from './User Pages/UserHome';
 import UserLayout from './Layouts/UserLayout';
 import UserCart from './User Pages/UserCart';
+import UserBuyNow from './User Pages/UserBuyNow';
+import UserOrder from './User Pages/UserOrder';
+import AllOrders from './Admin pages/AllOrders';
 
 function App() {
 
@@ -35,6 +38,7 @@ function App() {
           <Route element={<AdminPrivate> <AdminLayout/> </AdminPrivate>} >
           <Route path='/Admin' element={<AdminHome/>} />
           <Route path='/Admin-Add-Product' element={<AddProduct/>} />
+          <Route path='/Admin-All-Order' element={<AllOrders/>}/>
           
           </Route>
 
@@ -42,6 +46,8 @@ function App() {
         <Route element={<UserPrivate> <UserLayout/> </UserPrivate>}>
         <Route path='/Home' element={<UserHome/>}/>
         <Route path='/Cart' element={<UserCart/>} />
+        <Route path='/Buy-now' element={<UserBuyNow/>} />
+        <Route path='/Orders' element={<UserOrder/>} />
 
         </Route>
 

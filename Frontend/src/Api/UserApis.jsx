@@ -60,14 +60,53 @@ export const GetCart=async(id)=>{
 
 // user cart remove product api 
 export const RemoveCartProduct=async(data)=>{
-    console.log(data);
+    // console.log(data);
     
     try{
         var response=await UserRequest.delete('/Cart/remove-product',{data:data})
-        console.log(response);
         
     }catch(error){
         console.log('error from remove product from cart',error);
         
     }
 }
+// collect user product order
+export const AllOrderUser =async(userid)=>{
+    try{
+        var response=await UserRequest.get(`/Product/User-orders/${userid}`)
+        return response.data
+
+    }catch(error){
+        console.log("error from all order user api",error);
+        
+    }
+}
+
+
+// buy now api
+export const CreateOrder = async ({ product, user, deliveryDetails }) => {
+    const fulladdress = `${deliveryDetails.address}, ${deliveryDetails.city}, ${deliveryDetails.state}, ${deliveryDetails.pincode}`;
+
+    try {
+        const response = await UserRequest.post('/Product/Create-Order', {
+            amount: product.productPrice,
+            productDetails: {
+                productid: product._id,
+                productname: product.productName,
+                productimage: product.productImage,
+                productprice: product.productPrice
+            },
+            CustomerDetails: {
+                name: user.fullname,
+                address: fulladdress,
+                phone: deliveryDetails.phone
+            },
+            userid: user._id
+        });
+
+        return { data: response.data, fulladdress };
+    } catch (error) {
+        console.error("error from buy now api", error);
+        
+    }
+};

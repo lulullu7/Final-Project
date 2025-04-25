@@ -36,3 +36,16 @@ export const AddProductAdmin = async (data,AdminToken) => {
 
 }
 
+// view all orders
+export const ViewAllOrders=async()=>{
+    try{
+        var response=await AdminRequest.get('/Product/Admin-All-Order')
+        return response.data
+    
+    }catch(error){
+        console.log("error from view all orders");
+        
+        
+    }
+}
+
